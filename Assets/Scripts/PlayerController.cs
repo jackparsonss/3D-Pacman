@@ -1,13 +1,23 @@
+using System;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 10;
+    [SerializeField] private int lives = 3;
+    [SerializeField] private TextMeshProUGUI livesText;
+    [SerializeField] private TextMeshProUGUI pointsText;
+
     
+    private float _points = 0;
     private Rigidbody _pacmanRb;
+    private GameManager _gameManager;
+
     private void Start()
     {
         _pacmanRb = GetComponent<Rigidbody>();
+        _gameManager = FindObjectOfType<GameManager>().GetComponent<GameManager>();
     }
 
     private void Update()
@@ -17,5 +27,45 @@ public class PlayerController : MonoBehaviour
         
         Vector3 movement = transform.forward * verticalAxis + transform.right * horizontalAxis;
         _pacmanRb.AddForce(movementSpeed * Time.deltaTime * movement);
+        if (lives == 0)
+        {
+            Debug.Log("GAME OVER!!!");
+            _pacmanRb.isKinematic = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Powerup"))
+        {
+            UpdatePoints(5);
+            Destroy(other.gameObject);
+        }else if (other.gameObject.CompareTag("Ghost"))
+        {
+            LoseLife();
+            transform.position = Vector3.zero;
+            _pacmanRb.velocity = Vector3.zero;
+        }else if (other.gameObject.CompareTag("Coin"))
+        {
+            PickupCoin(1);
+        }
+    }
+
+    private void UpdatePoints(float points)
+    {
+        _points += points;
+        pointsText.text = "Score: " + points;
+    }
+
+    private void LoseLife()
+    {
+        lives--;
+        livesText.text = "Lives: " + lives;
+    }
+
+    private void PickupCoin(float value)
+    {
+        _gameManager.coins += value;
+        _gameManager.coinsText.text = "Coins: " + _gameManager.coins;
     }
 }
