@@ -3,7 +3,10 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public TextMeshProUGUI coinsText;
-    public float coins;
+    [SerializeField] private TextMeshProUGUI coinsText;
+    [SerializeField] private float coins;
+
+    public TextMeshProUGUI CoinsText { get => coinsText; set => coinsText = value; }
+    public float Coins { get => coins; set => coins = value; }
 
 }

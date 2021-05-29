@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         }else if (other.gameObject.CompareTag("Coin"))
         {
             PickupCoin(1);
+            Destroy(other.gameObject);
         }
     }
 
@@ -65,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
     private void PickupCoin(float value)
     {
-        _gameManager.coins += value;
-        _gameManager.coinsText.text = "Coins: " + _gameManager.coins;
+        _gameManager.Coins += value;
+        _gameManager.CoinsText.text = "Coins: " + _gameManager.Coins;
     }
 }
