@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
         
         Vector3 movement = transform.forward * verticalAxis + transform.right * horizontalAxis;
         _pacmanRb.AddForce(movementSpeed * Time.deltaTime * movement);
+        
         if (lives == 0)
         {
             Debug.Log("GAME OVER!!!");
