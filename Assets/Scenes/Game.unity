@@ -9921,6 +9921,10 @@ PrefabInstance:
       value: Pacman
       objectReference: {fileID: 0}
     - target: {fileID: 2902052332931800215, guid: 8b015caa880521945bddbe2833b55c11, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902052332931800215, guid: 8b015caa880521945bddbe2833b55c11, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}

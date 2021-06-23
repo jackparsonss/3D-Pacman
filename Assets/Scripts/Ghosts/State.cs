@@ -8,7 +8,7 @@ namespace Ghosts
         public enum STATE
         {
             IDLE,
-            PATROL,
+            WANDER,
             PURSUE,
             RUNAWAY,
         };

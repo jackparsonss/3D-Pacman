@@ -11,12 +11,12 @@ namespace Ghosts
             name = STATE.PURSUE;
             agent.isStopped = false;
         }
+        
         public override void Enter()
         {
             base.Enter();
             Debug.Log("ENTERED PURSUE");
             //anim.SetTrigger("isRunning");
-        
         }
     
         public override void Update()
@@ -25,7 +25,7 @@ namespace Ghosts
 
             if (agent.hasPath && !CanSeePlayer())
             {
-                nextState = new Idle(npc, agent, player);
+                nextState = new Wander(npc, agent, player);
                 stage = EVENT.EXIT;
             }
         }
