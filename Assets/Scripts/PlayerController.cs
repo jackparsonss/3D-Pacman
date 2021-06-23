@@ -44,9 +44,18 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(_gameManager.PowerUpActive());
         }else if (other.gameObject.CompareTag("Ghost"))
         {
-            LoseLife();
-            transform.position = Vector3.zero;
-            _pacmanRb.velocity = Vector3.zero;
+            if (GameManager.IsPowerUpActive)
+            {
+                UpdatePoints(15);
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                LoseLife();
+                transform.position = Vector3.zero;
+                _pacmanRb.velocity = Vector3.zero;
+            }
+
         }else if (other.gameObject.CompareTag("Coin"))
         {
             PickupCoin(1);
