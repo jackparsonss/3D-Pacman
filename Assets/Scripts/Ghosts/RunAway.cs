@@ -15,7 +15,6 @@ namespace Ghosts
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("ENTERED RUNAWAY");
             //anim.SetTrigger("isRunningAway");
         }
         
@@ -35,7 +34,6 @@ namespace Ghosts
         public override void Exit()
         {
             base.Exit();
-            Debug.Log("EXITED RUNAWAY");
             //anim.ResetTrigger("isRunningAway");
         }
 

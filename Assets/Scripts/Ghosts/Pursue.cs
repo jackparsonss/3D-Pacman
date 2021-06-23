@@ -15,7 +15,6 @@ namespace Ghosts
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("ENTERED PURSUE");
             //anim.SetTrigger("isRunning");
         }
     
@@ -37,7 +36,6 @@ namespace Ghosts
         public override void Exit()
         {
             base.Exit();
-            Debug.Log("EXITED IDLE");
             //anim.ResetTrigger("isRunning");
         }
     }

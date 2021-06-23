@@ -19,7 +19,6 @@ namespace Ghosts
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("ENTERED WANDER");
             //anim.SetTrigger("isWandering");
         }
 
@@ -46,7 +45,6 @@ namespace Ghosts
         public override void Exit()
         {
             base.Exit();
-            Debug.Log("EXITED WANDER");
             //anim.ResetTrigger("isWandering");
         }
 

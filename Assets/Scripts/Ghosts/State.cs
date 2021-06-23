@@ -7,7 +7,6 @@ namespace Ghosts
     {
         public enum STATE
         {
-            IDLE,
             WANDER,
             PURSUE,
             RUNAWAY,
