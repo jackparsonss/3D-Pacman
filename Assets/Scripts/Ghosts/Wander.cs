@@ -36,7 +36,7 @@ namespace Ghosts
 
                 if (_timer >= _wanderTimer)
                 {
-                    Vector3 newPos = RandomNavSphere(player.transform.position, _wanderRadius, -1);
+                    Vector3 newPos = RandomNavSphere(agent.transform.position, _wanderRadius, -1);
                     agent.SetDestination(newPos);
                     _timer = 0;
                 }
