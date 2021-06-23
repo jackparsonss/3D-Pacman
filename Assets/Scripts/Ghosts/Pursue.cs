@@ -27,6 +27,10 @@ namespace Ghosts
             {
                 nextState = new Wander(npc, agent, player);
                 stage = EVENT.EXIT;
+            }else if (GameManager.IsPowerUpActive)
+            {
+                nextState = new RunAway(npc, agent, player);
+                stage = EVENT.EXIT;
             }
         }
     

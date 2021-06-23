@@ -6,6 +6,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool IsPowerUpActive = false;
+    
     [SerializeField] private TextMeshProUGUI coinsText;
     [SerializeField] private float coins;
 
@@ -21,10 +23,12 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator PowerUpActive()
     {
+        IsPowerUpActive = true;
         ChangeGhostsColor(Color.blue);
 
         yield return new WaitForSeconds(5);
-
+        
+        IsPowerUpActive = false;
         ChangeGhostsColor(Color.red);
     }
 
