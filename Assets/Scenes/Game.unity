@@ -9996,7 +9996,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7009963325467233463, guid: d887a943ce234c64787f0990cacb28fd, type: 3}
       propertyPath: m_Speed
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009963325467233463, guid: d887a943ce234c64787f0990cacb28fd, type: 3}
+      propertyPath: m_Height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009963325467233463, guid: d887a943ce234c64787f0990cacb28fd, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7009963326133784968, guid: d887a943ce234c64787f0990cacb28fd, type: 3}
       propertyPath: m_Name

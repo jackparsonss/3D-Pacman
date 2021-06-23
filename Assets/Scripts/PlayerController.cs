@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         {
             UpdatePoints(5);
             Destroy(other.gameObject);
+            StartCoroutine(_gameManager.PowerUpActive());
         }else if (other.gameObject.CompareTag("Ghost"))
         {
             LoseLife();
