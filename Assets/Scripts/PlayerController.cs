@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
             if (GameManager.IsPowerUpActive)
             {
                 UpdatePoints(15);
-                Destroy(other.gameObject);
+                other.gameObject.transform.position = new Vector3(0, 0, 0);
             }
             else
             {
