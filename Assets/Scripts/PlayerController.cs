@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -8,9 +7,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int lives = 3;
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI pointsText;
-
     
-    private float _points = 0;
+    private float _points;
     private Rigidbody _pacmanRb;
     private GameManager _gameManager;
 
@@ -35,49 +33,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ConsumePowerUp(int points)
     {
-        if (other.gameObject.CompareTag("Powerup"))
-        {
-            UpdatePoints(5);
-            Destroy(other.gameObject);
-            StartCoroutine(_gameManager.PowerUpActive());
-        }else if (other.gameObject.CompareTag("Ghost"))
-        {
-            if (GameManager.IsPowerUpActive)
-            {
-                UpdatePoints(15);
-                other.gameObject.transform.position = new Vector3(0, 0, 0);
-            }
-            else
-            {
-                LoseLife();
-                transform.position = Vector3.zero;
-                _pacmanRb.velocity = Vector3.zero;
-            }
+        UpdatePoints(points);
+        _gameManager.StartPowerUp();
+    }
 
-        }else if (other.gameObject.CompareTag("Coin"))
-        {
-            PickupCoin(1);
-            Destroy(other.gameObject);
-        }
+    public void ConsumeGhost(int points)
+    {
+        UpdatePoints(points);
+    }
+
+    public void GetEaten()
+    {
+        LoseLife();
+        transform.position = Vector3.zero;
+        _pacmanRb.velocity = Vector3.zero;
     }
 
     private void UpdatePoints(float points)
     {
         _points += points;
-        pointsText.text = "Score: " + points;
+        pointsText.text = "Score: " + _points;
     }
 
     private void LoseLife()
     {
         lives--;
         livesText.text = "Lives: " + lives;
-    }
-
-    private void PickupCoin(float value)
-    {
-        _gameManager.Coins += value;
-        _gameManager.CoinsText.text = "Coins: " + _gameManager.Coins;
     }
 }

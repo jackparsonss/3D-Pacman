@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
-using Ghosts;
 using UnityEngine;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    
     public static bool IsPowerUpActive = false;
     
     [SerializeField] private TextMeshProUGUI coinsText;
@@ -13,15 +12,21 @@ public class GameManager : MonoBehaviour
 
     private GameObject[] _ghosts;
 
-    public TextMeshProUGUI CoinsText { get => coinsText; set => coinsText = value; }
-    public float Coins { get => coins; set => coins = value; }
-
     private void Start()
     {
         _ghosts = GameObject.FindGameObjectsWithTag("Ghost");
     }
 
-    public IEnumerator PowerUpActive()
+    public void StartPowerUp()
+    {
+        StartCoroutine(PowerUpActive());
+    }
+    public void PickupCoin(float value)
+    {
+        coins += value;
+        coinsText.text = "Coins: " + coins;
+    }
+    private IEnumerator PowerUpActive()
     {
         IsPowerUpActive = true;
         ChangeGhostsColor(Color.blue);
