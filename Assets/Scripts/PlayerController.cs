@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -25,36 +26,64 @@ public class PlayerController : MonoBehaviour
         
         Vector3 movement = transform.forward * verticalAxis + transform.right * horizontalAxis;
         _pacmanRb.AddForce(movementSpeed * Time.deltaTime * movement);
-        
-        if (lives == 0)
+    }
+
+    private void Die()
+    {
+        Debug.Log("GAME OVER!!!");
+        _pacmanRb.isKinematic = true;
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Point"))
         {
-            Debug.Log("GAME OVER!!!");
-            _pacmanRb.isKinematic = true;
+            UpdateAndCheckPoints(1);
+            Destroy(other.gameObject);
         }
     }
 
     public void ConsumePowerUp(int points)
     {
-        UpdatePoints(points);
+        UpdateAndCheckPoints(points);
         _gameManager.StartPowerUp();
     }
 
     public void ConsumeGhost(int points)
     {
-        UpdatePoints(points);
+        UpdateAndCheckPoints(points);
     }
 
     public void GetEaten()
     {
-        LoseLife();
+        LoseLifeAndCheckDeath();
         transform.position = Vector3.zero;
         _pacmanRb.velocity = Vector3.zero;
     }
 
-    private void UpdatePoints(float points)
+    private void UpdateAndCheckPoints(int points)
+    {
+        UpdatePoints(points);
+        if (_points == _gameManager.totalLevelPoints)
+        {
+            Debug.Log("LEVEL COMPLETE!!");
+        }
+    }
+
+    private void UpdatePoints(int points)
     {
         _points += points;
         pointsText.text = "Score: " + _points;
+    }
+
+    private void LoseLifeAndCheckDeath()
+    {
+        LoseLife();
+        if (lives == 0)
+        {
+            Die();
+        }
     }
 
     private void LoseLife()

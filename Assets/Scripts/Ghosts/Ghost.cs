@@ -4,7 +4,7 @@ namespace Ghosts
 {
     public class Ghost : MonoBehaviour
     {
-        [SerializeField] private int pointValue = 5;
+        [SerializeField] private int pointValue = 0;
 
         private void OnTriggerEnter(Collider other)
         {

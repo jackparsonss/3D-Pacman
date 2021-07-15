@@ -1,11 +1,12 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    
     public static bool IsPowerUpActive = false;
+    public int totalLevelPoints;
     
     [SerializeField] private TextMeshProUGUI coinsText;
     [SerializeField] private float coins;
@@ -13,13 +14,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Material _blueGhostMaterial;
 
     private GameObject[] _ghosts;
+    private int _amountOfPoints;
+    private int _amountOfPowerUps;
     
     private void Start()
     {
         _ghosts = GameObject.FindGameObjectsWithTag("Ghost");
-
-        // _greenGhostMaterial = Resources.Load("Materials/GreenGhost", typeof(Material)) as Material;
-        // _blueGhostMaterial = Resources.Load("Materials/BlueGhost", typeof(Material)) as Material;
+        
+        _amountOfPoints = GameObject.FindGameObjectsWithTag("Point").Length;
+        _amountOfPowerUps = GameObject.FindGameObjectsWithTag("Powerup").Length;
+        
+        totalLevelPoints = _amountOfPoints + _amountOfPowerUps;
     }
 
     public void StartPowerUp()
