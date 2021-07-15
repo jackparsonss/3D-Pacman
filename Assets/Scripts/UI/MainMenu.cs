@@ -7,12 +7,12 @@ namespace UI
     {
         public void PlayGame()
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
         public void QuitGame()
         {
-            Debug.Log("QUITTING GAME");
             Application.Quit();
         }
     }

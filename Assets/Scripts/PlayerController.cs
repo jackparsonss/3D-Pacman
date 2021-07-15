@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int lives = 3;
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI pointsText;
+    [SerializeField] private GameObject levelFailedUI;
+    [SerializeField] private GameObject levelCompletedUI;
     
     private float _points;
     private Rigidbody _pacmanRb;
@@ -30,8 +32,8 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("GAME OVER!!!");
-        _pacmanRb.isKinematic = true;
+        Time.timeScale = 0f;
+        levelFailedUI.SetActive(true);
         Destroy(gameObject);
     }
 
@@ -67,7 +69,8 @@ public class PlayerController : MonoBehaviour
         UpdatePoints(points);
         if (_points == _gameManager.totalLevelPoints)
         {
-            Debug.Log("LEVEL COMPLETE!!");
+            Time.timeScale = 0f;
+            levelCompletedUI.SetActive(true);
         }
     }
 
